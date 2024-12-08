@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Member Registration Form
+  </title>
+  <style>
+   body {
+            font-family: Arial, sans-serif;
+            background-color: #f5faff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .form-container {
+            position: relative;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            width: 360px;
+            max-width: 100%;
+            border: 1px solid #e0e0e0;
+            overflow: hidden;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .form-container img.logo {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 60px;
+            height: auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="file"] {
+            width: calc(100% - 16px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus,
+        input[type="file"]:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff; 
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+  </style>
+  <script>
+   function handleSubmit(event) {
+            event.preventDefault(); 
+
+            var formData = new FormData(event.target);
+
+            fetch(event.target.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === "uploaded successfully") {
+                    alert("Thank you, successfully filled!");
+                    event.target.reset();
+                } else {
+                    alert("Please try again.");
+                }
+            })
+            .catch(error => {
+                alert("Please try again.");
+                console.error('Error:', error);
+            });
+        }
+  </script>
+ </head>
+ <body>
+  <div class="form-container">
+   <img alt="MLSA Logo" class="logo" src="./mlsa.png"/>
+   <h2>
+    Add New Member
+   </h2>
+   <form action="https://mlsa-backend-4w03.onrender.com/api/member/addmember" enctype="multipart/form-data" method="POST" onsubmit="handleSubmit(event)">
+    <label for="name">
+     Name:
+    </label>
+    <input id="name" name="name" required="" type="text"/>
+    <label for="domain">
+     Domain:
+    </label>
+    <input id="domain" name="domain" required="" type="text"/>
+    <label for="linkedlnIdId">
+     LinkedIn Url:
+    </label>
+    <input id="linkedlnIdId" name="linkedlnIdId" required="" type="text"/>
+    <label for="profileImage">
+     Image:
+    </label>
+    <input accept="image/*" id="profileImage" name="profileImage" required="" type="file"/>
+    <button type="submit">
+     Submit
+    </button>
+   </form>
+  </div>
+ </body>
+</html>
