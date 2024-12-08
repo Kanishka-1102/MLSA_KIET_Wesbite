@@ -85,32 +85,57 @@
         button:hover {
             background-color: #0056b3;
         }
+
+        .message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .success {
+            background-color: #e6f7ff;
+            color: #0056b3;
+        }
+
+        .error {
+            background-color: #ffe6e6;
+            color: #d9534f;
+        }
     </style>
     <script>
         function handleSubmit(event) {
             event.preventDefault(); // Prevent default form submission
 
             var formData = new FormData(event.target);
+            var messageElement = document.getElementById('message');
 
             fetch(event.target.action, {
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.json()
-                .catch(() => ({ status: response.status, body: null })) // In case JSON parsing fails
-            )
+            .then(response => {
+                if (response.ok) {
+                    return response.json().then(data => ({ status: response.status, body: data }));
+                }
+                return { status: response.status, body: null };
+            })
             .then(({ status, body }) => {
-                if (status === 201) {
-                    alert("You have already registered.");
-                } else if (body?.message === "uploaded successfully") {
-                    alert("Thank you, successfully filled!");
+                if (status === 200) {
+                    messageElement.textContent = "You have successfully added your data!";
+                    messageElement.className = "message success";
                     event.target.reset();
+                } else if (status === 201) {
+                    messageElement.textContent = "You have already registered. Kindly go and have a look at webiste member page ";
+                    messageElement.className = "message error";
                 } else {
-                    alert("Please try again.");
+                    throw new Error('Unexpected status');
                 }
             })
             .catch(error => {
-                alert("Please try again.");
+                messageElement.textContent = "Please try again.";
+                messageElement.className = "message error";
                 console.error('Error:', error);
             });
         }
@@ -138,6 +163,8 @@
             
             <button type="submit">Submit</button>
         </form>
+        <div id="message" class="message"></div>
     </div>
 </body>
 </html>
+
