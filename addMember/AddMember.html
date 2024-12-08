@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Member Registration Form</title>
+    <title>Mlsa New Members</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -97,12 +97,12 @@
                 body: formData
             })
             .then(response => response.json()
-                .then(data => ({ status: response.status, body: data }))
+                .catch(() => ({ status: response.status, body: null })) // In case JSON parsing fails
             )
             .then(({ status, body }) => {
-                if (status === 201 ) {
+                if (status === 201) {
                     alert("You have already registered.");
-                } else if (body.message === "uploaded successfully") {
+                } else if (body?.message === "uploaded successfully") {
                     alert("Thank you, successfully filled!");
                     event.target.reset();
                 } else {
