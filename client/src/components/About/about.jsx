@@ -12,23 +12,26 @@ import { Motion } from "../framer-motion"; // For Motion in Text
 const AboutUs = () => {
   return (
     <>
-      <div className=" mx-auto overflow-hidden mt-6 sm:pt-2 sm:mx-4 ">
+      <div className=" mx-auto overflow-hidden mt-36 sm:pt-2 sm:mx-4 ">
         <div className="lg:flex">
           <div className="p-2 sm:pl-16 pt-4 sm:pt-0">
-            <Motion.div
-              initial={{ opacity: 0, x: -100 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.8,
-                type: "spring",
-                stiffness: 110,
-                delay: 0,
-              }}
-              className="tracking-wide text-2xl sm:text-6xl text-blue-400 font-bold text-center sm:text-left"
-            >
-              About Us
-            </Motion.div>
+          
+  <Motion.div
+    initial={{ opacity: 0, x: -100 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    viewport={{ once: true }}
+    transition={{
+      duration: 0.8,
+      type: "spring",
+      stiffness: 110,
+      delay: 0,
+    }}
+    className="tracking-wide text-2xl sm:text-6xl  text-blue-400 font-bold text-center"
+  >
+    About Us
+  </Motion.div>
+
+
 
             <Motion.p
               initial={{ opacity: 0, x: -100 }}
@@ -40,7 +43,7 @@ const AboutUs = () => {
                 stiffness: 110,
                 delay: 0,
               }}
-              className="sm:mt-12 mt-4 text-2xl text-bold  text-white sm:text-xl"
+              className="sm:mt-12 mt-4 text-2xl text-bold text-center text-white sm:text-xl"
             >
               Microsoft Learn Student Ambassadors, passionate and tech-savvy,
               promote digital literacy and tech skills in academic communities.
