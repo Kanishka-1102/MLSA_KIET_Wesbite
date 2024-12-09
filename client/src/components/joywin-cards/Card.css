@@ -1,7 +1,7 @@
 .Card-content {
   position: relative;
   width: 100%;
-  background-color: rgb(216, 184, 247);
+  background-color: hsl(197, 79%, 85%);
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
@@ -15,7 +15,7 @@
 
 .Card-title {
   width: 100%;
-  background-color: rgb(216, 184, 247);
+  background-color: hsl(197, 79%, 85%);
   padding: 10px;
   box-sizing: border-box;
   text-align: center;
@@ -41,7 +41,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: rgb(216, 184, 247);
+  background-color: hsl(197, 79%, 85%);
   box-sizing: border-box;
 }
 
